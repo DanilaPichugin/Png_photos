@@ -1,0 +1,635 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Пользовательская инструкция web-приложения Deployer</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5e02140b-9410-4252-910e-692d6fb8da8b" class="page sans"><header><h1 class="page-title">Пользовательская инструкция web-приложения Deployer</h1></header><div class="page-body"><p id="ee0f545d-b6a8-4405-b807-97e6e993a503" class="">Deployer – сервис, предоставляющий интерфейс по развёртыванию контейнерного программного обеспечения в вашем кластере и и управления ресурсами кластера</p><p id="4268475d-b01a-4fed-a88c-86a77419bff2" class="">Вы можете использовать Deployer, чтобы получить обзор приложений, работающих в вашем кластере, а так же для создания или изменения отдельных ресурсов.</p><figure id="d84e21ec-9966-4bfd-a08c-3e14cfffdfbc" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled.png"><img style="width:670px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled.png"/></a></figure><p id="c64b5f7c-8cdd-40c5-a4a6-b3303ac0b3a8" class="">Сервис предоставляет следующий функционал:</p><ul id="0ab8f3a9-ad4b-47d7-b1be-e79e1a14e4c3" class="bulleted-list"><li>Просмотр существующих приложений</li></ul><ul id="fc3a27f9-3e0b-4ebc-aa04-fa5753752fac" class="bulleted-list"><li>Создание приложения</li></ul><ul id="62b51ae9-c6c9-4e40-a87b-ac738cbec5e5" class="bulleted-list"><li>Настройка приложения<ol id="3887dacc-ea6e-4f14-ad74-f3249ae8615c" class="numbered-list" start="1"><li>Инициализация переменных окружения</li></ol><ol id="65525ccd-fa94-4de5-8c9b-fa6a30d227bb" class="numbered-list" start="2"><li>Указание портов</li></ol><ol id="d53db867-8adc-4e75-b9a5-dddd25888122" class="numbered-list" start="3"><li>Инициализация томов</li></ol></li></ul><ul id="aa49c401-fdc9-461d-8c09-f7d40e480711" class="bulleted-list"><li>Удаление приложения</li></ul><ul id="01e89ad3-e02e-40b9-93af-fbec23b41128" class="bulleted-list"><li>Авторизация пользователя</li></ul><ul id="141912ba-dfbf-4a7e-8d43-fbf90aede8bf" class="bulleted-list"><li>Просмотр деталей пользователя на странице пользователя</li></ul><p id="52e32b8e-493b-453b-832b-50da5e6985c3" class="">
+</p><p id="eadfba65-3556-4ea2-b663-e295cc75918d" class="">Приложение делится на несколько ключевых страниц:</p><ul id="5213bd41-182c-49af-a2ef-2c39eb1f98ca" class="bulleted-list"><li>Страница авторизации<figure id="a711431c-b14a-492a-a185-bb0cf10b3c33" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%201.png"><img style="width:672px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%201.png"/></a></figure></li></ul><ul id="69e0245b-b462-4833-9d05-e3f9a5a5eea1" class="bulleted-list"><li>Главная страница<figure id="7e71283b-c05c-4a65-a542-c9c833faaeef" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%202.png"><img style="width:720px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%202.png"/></a></figure><p id="169a33cb-cc7a-482a-a557-7337713faab7" class="">На главной странице отображаются все существующие приложения и краткая информация о них:</p><ul id="43b36cab-41da-49f0-9d73-6c5326776d79" class="bulleted-list"><li>Имя</li></ul><ul id="5e3b5c7a-1541-4bd2-877e-d5faae3df4de" class="bulleted-list"><li>Дата и время создания</li></ul><ul id="a231612e-f3e8-41b5-9729-854879f41a4c" class="bulleted-list"><li>Количество работающих реплик</li></ul><ul id="08e24067-7213-475f-961e-4e149c794081" class="bulleted-list"><li>Количество неработающих реплик</li></ul><figure id="13cda801-fc8f-4826-a0da-0a7c91dd5e8e" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%203.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%203.png"/></a></figure><p id="1a6c3c34-a199-4a49-8ba9-88acdeca9e4d" class="">Сверху от списка приложений находится строка поиска для оптимизации процесса поиска приложения среди существующих:</p><figure id="bdb25dec-a0c7-4877-a1bc-fa36db7b5dc9" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%204.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%204.png"/></a></figure><p id="90cce699-4d77-40f8-aa92-ae59ff879a4e" class="">Поиск производится по нестрогому совпадению.</p><p id="52292d9b-2670-42b5-a57a-60f5aaf0dfc8" class="">
+</p></li></ul><ul id="bb4a6ee4-28fc-4dde-849b-a5f78381b776" class="bulleted-list"><li>Страница создания приложения<figure id="c7d9efe3-3b90-45e9-839a-ede00cf22c10" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%205.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%205.png"/></a></figure></li></ul><p id="7a39c923-e305-4fba-b81a-8aee561ff609" class="">
+</p><ul id="ee15da5d-29ec-4551-b056-262da9baefe4" class="bulleted-list"><li>Страница приложения<p id="d9cd8b76-cf41-4537-90c6-36a1cc3ae560" class="">При клике на приложение открывается страница приложения с данными о выбранном приложении и функционалом:</p><ul id="dc12605e-6c7a-4174-b419-8114edd1413a" class="bulleted-list"><li>Описание</li></ul><ul id="2053a02c-dca2-4bb7-8f6b-5d2e38b86fd3" class="bulleted-list"><li>Последний релиз</li></ul><ul id="92a14e33-10b1-49f8-a45e-fa3b7c0596a9" class="bulleted-list"><li>Версия</li></ul><ul id="64aa3f91-af6c-4788-92af-a9d7f74a3c2a" class="bulleted-list"><li>Элемены управления настройкой приложения</li></ul><figure id="0fd93e3e-f825-4149-9af2-1633356fe1ed" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%206.png"><img style="width:768px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%206.png"/></a></figure><p id="f75bc15c-9846-49ad-aa88-e84bf9916238" class="">Также, на данной странице находятся 3 вкладки:</p><ul id="09737e91-713b-4cb6-8e57-37cb9ac9227a" class="bulleted-list"><li>ENV</li></ul><ul id="398c45bd-5f15-4d75-943d-d1dda9ac7ff4" class="bulleted-list"><li>PORTS</li></ul><ul id="9ecdbd65-5866-4299-9a46-e0d95a6a8f34" class="bulleted-list"><li>VOLUMES</li></ul><p id="182a1edc-f167-4ac0-93b3-9c85c570ca2f" class="">С помощью данных вкладок можно переключать правое меню настройки приложения.</p><p id="05f0682b-d72c-45fb-8d91-d77407e6411a" class="">
+</p></li></ul><ul id="2215e70e-a2b3-4a6d-9cb1-14f9139c89b4" class="bulleted-list"><li>На вкладке &quot;ENV&quot;<figure id="051371ff-c570-42a7-8669-8c983947a82a" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%207.png"><img style="width:402px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%207.png"/></a></figure></li></ul><ul id="4b3ecc87-86b3-4713-b658-4457f88dff58" class="bulleted-list"><li>На вкладке &quot;PORTS&quot; можно настроить порты приложения<figure id="fa2eb9e4-75a0-4834-aead-c139d219ed46" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%208.png"><img style="width:432px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%208.png"/></a></figure></li></ul><ul id="e83c0a57-3059-45eb-bf70-6de0cae6aef2" class="bulleted-list"><li>На вкладке &quot;VOLUMES&quot; можно настроить тома приложения.<figure id="84f3877b-1488-414c-b500-eb28e465056b" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%207.png"><img style="width:402px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%207.png"/></a></figure></li></ul><p id="bdf8e141-330b-49ce-8859-22ab30783cab" class="">На странице находится информация о всех репликах приложения:</p><ul id="2733d606-a087-4e25-aee4-55c2477fed08" class="bulleted-list"><li>Имя</li></ul><ul id="5d7799d9-cbd5-409f-959a-b8f2c246f1cf" class="bulleted-list"><li>Версия</li></ul><ul id="04977b17-ff6f-4077-bd2a-38dd3c9a43c9" class="bulleted-list"><li>Статус</li></ul><ul id="9297b456-32b2-4cab-8277-954a6e8e6bbd" class="bulleted-list"><li>Псевдоним</li></ul><figure id="5f7824eb-004e-475d-aefa-b2adbd015119" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%209.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%209.png"/></a></figure><p id="0a19674d-c189-45dc-8ba0-a8e282ba00fa" class="">и также содержатся элементы управления:</p><figure id="034c78a4-2abf-4722-bf0e-71a86fd2b5f2" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2010.png"><img style="width:202px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2010.png"/></a></figure><ul id="8b182f5e-62f4-4426-8512-a809a88d3492" class="bulleted-list"><li>Кнопка запуска реплики:<figure id="1a98dc09-b12d-433f-9527-455214a86353" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2011.png"><img style="width:32px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2011.png"/></a></figure></li></ul><ul id="09660825-bd5a-4f01-86fd-c9416f9d7684" class="bulleted-list"><li>Кнопка остановки реплики:<figure id="f942a4e4-2931-4edb-949a-1959fd8b2865" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2012.png"><img style="width:32px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2012.png"/></a></figure></li></ul><ul id="16c7c920-c6b3-413a-99fa-c9a0fa2fd0f4" class="bulleted-list"><li>Кнопка перезагрузки реплики:<figure id="d94b08ed-e14b-4340-8ebe-0113bacf9bb0" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2013.png"><img style="width:36px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2013.png"/></a></figure></li></ul><ul id="bfe00214-b775-4b68-be08-822d4155c742" class="bulleted-list"><li>Кнопка удаления реплики:<figure id="7048782d-1654-4640-a6ee-a9caef319bee" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2014.png"><img style="width:44px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2014.png"/></a></figure></li></ul><p id="118ae4cc-3e1b-4e8f-8229-bb9d27eea65a" class="">
+</p><h2 id="ce3939f6-cdf4-4f6d-8086-efa40b18710b" class="">Авторизация</h2><p id="62bce5fd-f627-469f-a4b2-a1d0a14b3424" class="">Авторизация происходит по номеру телефона через user-service.</p><p id="7352de93-9dc9-4611-a514-d59f4ef43cc6" class="">Для того, чтобы авторизироваться в приложении, необходимо:</p><ol id="c29fea3b-76a4-43b7-b29d-85c4ca611cfd" class="numbered-list" start="1"><li>Перейти на страницу авторизации. Это можно сделать кликнув по кнопке &quot;LOGIN&quot; в шапке приложения:<figure id="6889fa06-90ad-4215-a4d4-97600963bc0b" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2015.png"><img style="width:292px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2015.png"/></a></figure><p id="074b1dbd-69a4-492e-bf29-15e93e20d227" class="">Страница авторизации:</p><figure id="52b8dccc-fe8d-4b23-854d-826eeb0d3f88" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%201.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%201.png"/></a></figure></li></ol><ol id="66c58593-2853-4188-bab7-32e729041e0b" class="numbered-list" start="2"><li>Вводим свой номер телефона:<figure id="95855a2e-ed29-4a45-bb43-b0c7024a088a" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2016.png"><img style="width:354px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2016.png"/></a></figure><p id="de850d3a-a75c-4c31-99a6-824d5d68f765" class="">Нажимаем кнопку &quot;SUBMIT&quot;</p></li></ol><ol id="4bbc08d5-2f2b-4960-82f4-08ecec2829ed" class="numbered-list" start="3"><li>На введенный номер телефона придет SMS с кодом подтверждения, который необходимо ввести в поле, запрашивающее код подтверждения.<figure id="ca4cdb18-0382-4e53-8ec0-a9ca5af6a5f0" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2017.png"><img style="width:339px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2017.png"/></a></figure><p id="167bd75f-02e2-4f79-bc1e-7ace479c3190" class="">После чего открывается Главная страница со всеми доступными приложениями.</p><figure id="39d22c36-571b-4439-8d73-3d487efbd92d" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%202.png"><img style="width:720px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%202.png"/></a></figure><p id="c4f10756-a30d-41b2-8f32-7027b6e99b65" class="">
+</p><h2 id="c7d4fe96-fd35-48b4-b081-7b86453a1768" class="">Создание приложения</h2><p id="198ef414-4b18-475e-8b4c-9ca6078ae7aa" class="">Для того, чтобы создать приложение, необходимо</p><ol id="dbd1626a-c642-4a76-a450-dc25c9fb757e" class="numbered-list" start="1"><li>Переходим на главную страницу (она же страница поиска по доступным приложениям). Это можно сделать, нажав на &quot;Лупу&quot; в шапке приложения:<figure id="f8755ea2-4170-4a04-99c9-f0348d340edf" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2015.png"><img style="width:292px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2015.png"/></a></figure><p id="7a3723c9-c050-45b7-be6f-165285a5d100" class="">
+</p></li></ol><ol id="278d4ea3-4f00-40a7-9465-3b0121d49166" class="numbered-list" start="2"><li>Нажимаем на кнопку &quot;NEW APP&quot; справа от строки поиска:<figure id="31e23006-7f07-4498-a734-42aeaead58a2" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2018.png"><img style="width:128px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2018.png"/></a></figure><p id="75749349-8fa4-492f-bcae-1a40c57b507d" class="">Откроется страница создания приложения.</p><figure id="3cb04027-6f4b-4a55-bb9c-da66e6d276c2" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2019.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2019.png"/></a></figure></li></ol><ol id="6c14a3e8-ecb4-4207-84a0-69fec4eef961" class="numbered-list" start="3"><li>Заполняем поля в форме на странице создания приложения.<figure id="bfa7dacb-1802-41d2-a655-a9f608ce47ca" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2020.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2020.png"/></a></figure></li></ol><ol id="c56d5fa1-7b28-4e0e-9719-4a2bfbc84959" class="numbered-list" start="4"><li>Нажимаем на кнопку &quot;CREATE&quot;:<figure id="7350c03a-a7b7-4a7b-b21d-4fa7d11003cb" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2021.png"><img style="width:410px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2021.png"/></a></figure><p id="16d58244-fe92-47db-8bcb-b3ad7415b735" class="">Открывается страница созданного приложения.</p></li></ol><p id="bed659b0-dcf8-4134-b10e-2b4fbbd317ab" class="">
+</p><h2 id="ac2ca1aa-f24f-45d0-a799-174779564da0" class="">Развёртывание приложения</h2><p id="52ba152b-2253-4cc3-9aac-17f8da317b7f" class="">Для того, чтобы развернуть приложение, необходимо:</p><ol id="d10f7aae-6a7b-4076-810d-5610b087f477" class="numbered-list" start="1"><li>Переходим на главную страницу (она же страница поиска по доступным приложениям). Это можно сделать, нажав на &quot;Лупу&quot; в шапке приложения:<figure id="9101f886-c657-4cd8-8ef7-af2345a4bc56" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2015.png"><img style="width:292px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2015.png"/></a></figure><p id="06ce283f-6ebc-4b7b-94f3-f62ef0698d90" class="">Открывается главная страница.</p><figure id="1b09d10a-19ab-47c7-ad58-ea2c2129208f" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2022.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2022.png"/></a></figure></li></ol><ol id="16251355-8a08-4fda-8bb4-e7dbcc91fe78" class="numbered-list" start="2"><li>С помощью строки поиска находим необходимое приложение в списке и кликаем по нему правой кнопкой мыши:<figure id="eb9ce830-f655-4a37-a13f-95b4aa41846b" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2023.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2023.png"/></a></figure><p id="6ddd631d-3d9e-4f23-abf0-2e6c22ef7440" class="">Откроется страница приложения:</p><figure id="b4ce49cd-2d5a-4a57-8ec4-b11a7f38095c" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2024.png"><img style="width:936px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2024.png"/></a></figure></li></ol><ol id="64443f4a-a41c-4cc3-b169-1b5375c94782" class="numbered-list" start="3"><li>Ориентируясь на вкладки &quot;ENV&quot;, &quot;PORTS&quot;, &quot;VOLUMES&quot;<figure id="c1150e4b-a282-4495-b525-984756f7fc05" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2025.png"><img style="width:488px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2025.png"/></a></figure><p id="68719439-4e54-40e8-bca6-f3fd4a46bb59" class="">настраиваем приложение его под свои нужды:</p><ol id="24d545cc-8b3e-4ce9-bb6e-541814131b6d" class="numbered-list" start="1"><li>&quot;ENV&quot; - настраиваем перемменные окружения<figure id="adc4ac15-231b-4c55-a2b7-8b3f076bc59b" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2026.png"><img style="width:402px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2026.png"/></a></figure><ul id="5511433a-6598-44a6-b765-64426a6bf649" class="bulleted-list"><li>Кнопка &quot;+&quot; добавляет переменную в список<figure id="06311c7f-b692-4333-bb2c-8a8c6e61d31b" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2027.png"><img style="width:60px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2027.png"/></a></figure></li></ul><ul id="1bb1b35b-7f0f-4a37-bb61-a61b6e19ff38" class="bulleted-list"><li>Кнопка &quot;Trash&quot; удаляет переменную из списка<figure id="ef8a3fb5-a166-4e38-9e36-9e4310fe978a" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2028.png"><img style="width:60px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2028.png"/></a></figure></li></ul><ul id="2a99588b-3614-4911-8c59-67b1ce7039db" class="bulleted-list"><li>Кнопка &quot;Save&quot; сохраняет изменения<figure id="171fe7c4-561e-4a71-b24b-5e21d39a2fb2" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2029.png"><img style="width:108px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2029.png"/></a></figure></li></ul></li></ol><ol id="a1456a46-9325-464a-adf4-aac5e5f0b5cb" class="numbered-list" start="2"><li>&quot;PORTS&quot; - настраиваем порты приложения<figure id="a7576a9a-32d6-478f-9450-f18dc2a6e2e3" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2030.png"><img style="width:602px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2030.png"/></a></figure><ul id="0cb0bbce-2bac-4ed2-9a40-608b613a6595" class="bulleted-list"><li>Кнопка &quot;+&quot; добавляет порт в список<figure id="6198b95d-e9ea-4bb5-a4c9-28c1c9e9127a" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2027.png"><img style="width:60px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2027.png"/></a></figure></li></ul><ul id="49bcde89-2457-4b6d-8405-404a01f704ef" class="bulleted-list"><li>Кнопка &quot;Trash&quot; удаляет порт из списка<figure id="dd563c37-0790-4624-8d2b-4d96e92bc673" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2028.png"><img style="width:60px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2028.png"/></a></figure></li></ul><ul id="e17970ed-bc98-4633-975c-d42f991ac265" class="bulleted-list"><li>Кнопка &quot;Save&quot; сохраняет изменения<figure id="451b3e61-6f21-454a-99f2-63d66ddadc04" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2029.png"><img style="width:108px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2029.png"/></a></figure></li></ul></li></ol><ol id="64ff0928-81f1-49b0-a82d-38ece9a4b941" class="numbered-list" start="3"><li>&quot;VOLUMES&quot; - настраиваем тома приложения<figure id="004573a9-fd56-4e3d-912e-43bd772ba798" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2031.png"><img style="width:588px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2031.png"/></a></figure></li></ol><ul id="07c27b5d-11a5-488b-a307-194c5a91fdc7" class="bulleted-list"><li>Кнопка &quot;+&quot; добавляет том в список<figure id="99c9ef7a-a7c1-494d-8b47-5b24ee463f90" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2027.png"><img style="width:60px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2027.png"/></a></figure></li></ul><ul id="4615dd9b-23d3-40dd-aeb3-6c7f17230389" class="bulleted-list"><li>Кнопка &quot;Trash&quot; удаляет том из списка<figure id="9314ce3f-052e-4b36-8844-5e7d33397950" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2028.png"><img style="width:60px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2028.png"/></a></figure></li></ul><ul id="3facf35f-c08e-4097-8331-45ab778a1938" class="bulleted-list"><li>Кнопка &quot;Save&quot; сохраняет изменения<figure id="cab9ad84-105a-4869-a917-70e3282a853c" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2029.png"><img style="width:108px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2029.png"/></a></figure></li></ul></li></ol><ol id="179e4903-6344-4181-9a92-958115ad7ed1" class="numbered-list" start="4"><li>Выбираем версию и вписываем псевдоним:<figure id="f8602a87-3cc9-41ad-89b8-834aa1791d38" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2032.png"><img style="width:222px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2032.png"/></a></figure></li></ol><ol id="306f9691-948f-4751-835e-c3158f6cf2e9" class="numbered-list" start="5"><li>Нажимаем на кнопку &quot;DEPLOY&quot;:<figure id="8db99207-27c1-4cbd-adcf-5989bb7c4293" class="image"><a href="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2033.png"><img style="width:98px" src="%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F%20web-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20Deploye%20d84e21ec99664bfda08c3e14cfffdfbc/Untitled%2033.png"/></a></figure></li></ol></li></ol></div></article></body></html>
